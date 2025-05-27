@@ -1,13 +1,22 @@
 use std::io::stdin;
 
+fn take_input(prompt: &str) -> String {
+    println!("{prompt}");
+    let mut input = String::new();
+    stdin().read_line(&mut input).expect("Failed to read input");
+    input
+}
+
+fn str_to_int(num: &str) -> i32 {
+    num.trim().parse().expect("Invalid number")
+}
+
 fn main() {
-    println!("enter the first number:");
-    let mut number1 = String::new();
-    stdin().read_line(&mut number1).expect("invalid input");
-    println!("enter the second number:");
-    let mut number2 = String::new();
-    stdin().read_line(&mut number2).expect("invalid input");
-    let num1: i32 = number1.trim().parse().expect("error");
-    let num2: i32 = number2.trim().parse().expect("error");
-    println!("the sum of the two nubers is : {}", num1 + num2);
+    let number1 = take_input("Enter the first number:");
+    let number2 = take_input("Enter the second number:");
+
+    let num1 = str_to_int(&number1);
+    let num2 = str_to_int(&number2);
+
+    println!("The sum of the two numbers is: {}", num1 + num2);
 }
